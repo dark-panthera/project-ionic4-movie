@@ -1,29 +1,55 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+  <ion-menu side="start" menuId="m1" contentId="main-content" class="invert">
+    <ion-header>
+      <ion-toolbar class=" ion-text-center">
+        <ion-label>
+          <div>
+            <ion-text class="font-title">
+              Panthera
+            </ion-text>
+          </div>
+          <ion-note class="ion-text-center">
+            <ion-text color="light" class="font-size-xs letter-spacing-s">
+              Movie Rating
+            </ion-text>
+          </ion-note>
+        </ion-label>
+      </ion-toolbar>
+    </ion-header>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle menu="m1">
+          <ion-item (click)="selectedMovie = 0" lines="none" [routerLink]="['/', 'movies']" detail="true"
+            [class.selected]="selectedMovie == 0" class="font-size-xs">
+            <ion-icon name="star" slot="start"></ion-icon>
+            <ion-label>Popular</ion-label>
           </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-  </ion-split-pane>
+        </ion-menu-toggle>
+        <ion-menu-toggle menu="m1">
+          <ion-item (click)="selectedMovie = 1" lines="none" [routerLink]="['/', 'movie-list']" detail="true"
+            [class.selected]="selectedMovie == 1" class="font-size-xs">
+            <ion-icon name="videocam" slot="start"></ion-icon>
+            <ion-label>Movie List</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-item-divider class="list-divider">
+          <ion-label>
+            <ion-text class="ion-text-light">
+              CATEGORIZED BY GENRE
+            </ion-text>
+          </ion-label>
+        </ion-item-divider>
+      </ion-list>
+
+      <ion-list id="labels-list">
+        <ion-item (click)="onFilter(genre)" *ngFor="let genre of genres$ | async" lines="none" fill="none"  detail="false" [class.selected]="selectedGenre == genre.id" button class="font-size-xs">
+          <ion-icon slot="end" color="dark" name="caret-forward"></ion-icon>
+          <ion-label>{{ genre?.genreType }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

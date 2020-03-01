@@ -1,0 +1,46 @@
+[
+	{
+		"id": 1,
+		"genreType": "Action"
+	},
+	{
+		"id": 2,
+		"genreType": "Adventure"
+    },
+    {
+		"id": 3,
+		"genreType": "Biography"
+    },
+    {
+		"id": 4,
+		"genreType": "Comedy"
+    },
+    {
+		"id": 5,
+		"genreType": "Crime"
+    }, 
+    {
+		"id": 6,
+		"genreType": "Drama"
+    },
+    {
+		"id": 7,
+		"genreType": "History"
+    },
+    {
+		"id": 8,
+		"genreType": "Mystery"
+    },
+    {
+		"id": 9,
+		"genreType": "Scifi"
+    },
+    {
+		"id": 10,
+		"genreType": "Sport"
+    },
+    {
+		"id": 11,
+		"genreType": "Thriller"
+	}
+]

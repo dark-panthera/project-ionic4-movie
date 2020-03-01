@@ -1,0 +1,13 @@
+$toolbar-padding: 10px 0;
+$toolbar-height: 50px;
+$title-padding: 15px 0;
+
+ion-toolbar.sc-ion-searchbar-ios-h, 
+ion-toolbar .sc-ion-searchbar-ios-h {
+    padding: $toolbar-padding;
+    height: $toolbar-height;
+}
+
+ion-title {
+    padding: $title-padding;
+}

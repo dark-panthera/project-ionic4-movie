@@ -1,8 +1,14 @@
+import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { GenreType } from './movies/genre.model';
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Store } from '@ngxs/store';
+import { GetGenres, GetMovies, FilterByGenre } from './actions/movie.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,47 +16,38 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
-  public appPages = [
-    {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
-    },
-    {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
-    },
-    {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
-    },
-    {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
-    }
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  // Varaible to specify the selected item
+  public selectedMovie = 0;
+  public selectedGenre = 0;
+ 
+  // Observable of type GenreType
+  public genres$ = new Observable<GenreType[]>();
+  public error$ = new Observable<any>();
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private store: Store,
+    private router: Router,
+    private toastController: ToastController
   ) {
     this.initializeApp();
+
+    // Dispatch Get Movies Action
+    this.store.dispatch(new GetMovies());
+
+    // Dispatch Get Genres Action
+    this.store.dispatch(new GetGenres());
+
+    // Listen to select movies.genres
+    this.genres$ = this.store.select(x => x.movies.genres);
+    this.store.select(x => x.movies.error).pipe(take(1)).subscribe(result => {
+      this.toastController.create({
+        header: 'Error',
+        message: result,
+      });
+    })
   }
 
   initializeApp() {
@@ -61,9 +58,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
+
+  }
+
+  // On Filter By Genre Redirect the user to movie search page
+  onFilter(genre) {
+
+    this.selectedGenre = genre.id;
+
+    this.store.dispatch(new FilterByGenre(genre.genreType));
+
+    this.router.navigate(['/', 'movies', 'movie-search']);
   }
 }

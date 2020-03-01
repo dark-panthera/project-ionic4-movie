@@ -24,3 +24,202 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+/* Font sizes */
+$font-size-palette: (xxxs: 8px,
+    xxs: 11px,
+    xs: 12px,
+    s: 13px,
+    m: 14px,
+    l: 15px,
+    xl: 16px,
+    xxl: 20px,
+    3xl: 22px,
+    4xl: 24px,
+    5xl: 26px,
+    6xl: 30px,
+);
+
+$font-size-6xl: map-get($font-size-palette, 6xl);
+$font-size-5xl: map-get($font-size-palette, 5xl);
+$font-size-4xl: map-get($font-size-palette, 4xl);
+$font-size-3xl: map-get($font-size-palette, 3xl);
+$font-size-xxl: map-get($font-size-palette, xxl);
+$font-size-xl: map-get($font-size-palette, xl);
+$font-size-l: map-get($font-size-palette, l);
+$font-size-m: map-get($font-size-palette, m);
+$font-size-s: map-get($font-size-palette, s);
+$font-size-xs: map-get($font-size-palette, xs);
+$font-size-xxs: map-get($font-size-palette, xxs);
+$font-size-xxxs: map-get($font-size-palette, xxxs);
+
+/* Letter Spacing Palette */
+$letter-size-palette: (s: 5px,
+    m: 10px);
+
+$letter-spacing-m: map-get($letter-size-palette, m);
+$letter-spacing-s: map-get($letter-size-palette, s);
+
+/* Letter Spacing Palette */
+$font-weight-palette: (xs: 300, s: bold,
+    m: 400,
+    md: 500,
+    lg: 600);
+
+$font-weight-lg: map-get($font-weight-palette, lg);
+$font-weight-md: map-get($font-weight-palette, md);
+$font-weight-m: map-get($font-weight-palette, m);
+$font-weight-s: map-get($font-weight-palette, s);
+$font-weight-xs: map-get($font-weight-palette, xs);
+
+/* Border radius Palette */
+$border-radius-palette: (xs: 0, s: 4px,
+    m: 5px,
+    lg: 10px);
+
+$border-radius-lg: map-get($border-radius-palette, lg);
+$border-radius-m: map-get($border-radius-palette, m);
+$border-radius-s: map-get($border-radius-palette, s);
+$border-radius-xs: map-get($border-radius-palette, xs);
+
+/* Label Small */
+$padding-label-small: 5px 15px;
+$background-label-small: #be9a7a;
+$margin-right-label-small: 5px;
+
+/* Label Large */
+$padding-label-large: 5px 0;
+$font-label-large: #0b1c29;
+
+ion-grid.flex,
+ion-grid.flex ion-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+ion-content.hide-background ion-toolbar {
+    --background: transparent;
+}
+
+// Font Weight
+.font-weight-xs {
+    font-weight: $font-weight-xs;
+}
+
+.font-weight-s {
+    font-weight: $font-weight-s;
+}
+
+.font-weight-m {
+    font-weight: $font-weight-m;
+}
+
+.font-weight-md {
+    font-weight: $font-weight-md;
+}
+
+.font-weight-lg {
+    font-weight: $font-weight-lg;
+}
+
+// Border Radius
+.border-radius-s {
+    border-radius: $border-radius-s;
+}
+
+.border-radius-m {
+    border-radius: $border-radius-m;
+}
+
+// Different Font Sizes
+.font-size-xxxs {
+    font-size: $font-size-xxxs;
+}
+
+.font-size-xxs {
+    font-size: $font-size-xxs;
+}
+
+// Font size: 12px
+.font-size-xs {
+    font-size: $font-size-xs;
+}
+
+.font-size-m {
+    font-size: $font-size-m;
+}
+
+.font-size-xxl {
+    font-size: $font-size-xxl;
+}
+
+.font-size-6xl {
+    font-size: $font-size-6xl;
+}
+
+// Required for Font Title
+.font-title {
+    @extend .font-size-6xl;
+    @extend .font-weight-s;
+    margin: 0 auto;
+}
+
+// Letter Spacing
+.letter-spacing-s {
+    letter-spacing: $letter-spacing-s;
+}
+
+// List Icon
+.list-icon {
+    @extend .font-size-xxxs;
+    margin: 10px;
+}
+
+// Dividers
+.list-divider {
+    @extend .font-size-xxs;
+    @extend .font-weight-xs;
+    color: var(--ion-color-light);
+}
+
+// Highlight
+.highlight-common {
+    @extend .font-size-xs;
+    @extend .font-weight-lg;
+}
+
+.highlight-value {
+    @extend .highlight-common;
+    color: var(--ion-color-success);
+}
+
+.highlight-label {
+    @extend .highlight-common;
+    color: var(--ion-color-light);
+}
+
+// Width
+.width {
+    width: 100%;
+}
+
+// Label Medium
+.label-medium {
+    color: var(--ion-color-light);
+    @extend .font-weight-m;
+}
+
+.label-small {
+    background: $background-label-small;
+    padding: $padding-label-small;
+    @extend .border-radius-m;
+    color: var(--ion-color-medium-contrast);
+    margin-right: $margin-right-label-small;
+}
+
+.label-large {
+    color: $font-label-large;
+    @extend .font-weight-m;
+    @extend .font-size-m;
+    padding: $padding-label-large;
+}

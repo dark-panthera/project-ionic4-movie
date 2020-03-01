@@ -1,0 +1,33 @@
+$box-shadow: inset 2px -1px 17px 0px rgba(119, 119, 119, 0.44);
+$img-width: 300px;
+$title-color: #0c6385;
+$subtitle-color: #aba0a0;
+$padding: 10px;
+
+ion-card {
+    box-shadow: $box-shadow;
+}
+
+ion-img {
+    /** 
+     * Bug fix for:
+     * https://github.com/ionic-team/ionic/issues/18734
+     */
+    min-height: 1px !important;
+}
+
+.image-container {
+    width: $img-width;
+}
+
+ion-card-title {
+    color: $title-color;
+}
+
+ion-card-subtitle {
+    color: $subtitle-color;
+}
+
+ion-card-header {
+    padding: $padding;
+}

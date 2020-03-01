@@ -1,0 +1,24 @@
+<ion-item lines="none" class="ion-no-margin ion-no-padding">
+  <ion-card class="width ion-no-margin">
+
+    <div class='image-container'>
+      <ion-img class="width" [src]="'assets/images/movie-covers/' + movie.img"></ion-img>
+    </div>
+    <ion-card-header class="ion-text-center ion-padding">
+      <ion-card-title class="font-size-xxl">{{movie?.name}}</ion-card-title>
+      <ion-card-subtitle class="font-size-xs">{{movie.year}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center ion-no-padding">
+      <p>
+        <ion-text class="highlight-value">{{movie?.rate}}</ion-text> / <ion-text class="highlight-label">10</ion-text>
+      </p>
+    </ion-card-content>
+    <div class="ion-text-center ion-padding">
+      <ion-button fill="solid" color="dark" routerDirection="forward"
+        [routerLink]="['/', 'movie-detail', movie?.id ]" >
+        More
+      </ion-button>
+    </div>
+  </ion-card>
+
+</ion-item>

@@ -1,0 +1,17 @@
+$subtitle-color: #be9a7a;
+$img-width: 450px;
+$img-margin: auto;
+
+ion-card-subtitle {
+    color: $subtitle-color;
+}
+
+ion-img {
+    width: $img-width;
+    position: relative;
+    margin-left: $img-margin;
+}
+
+.card-content-md {
+    padding-bottom: 0;
+}

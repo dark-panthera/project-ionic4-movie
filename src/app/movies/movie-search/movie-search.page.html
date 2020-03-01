@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/movies"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="hide-background">
+  <ion-grid class="flex">
+    <ion-row>
+      <span *ngFor="let n of movieList$ | async">
+        <ion-col size-lg="4">
+          <app-movie-card [movie]="n"></app-movie-card>
+        </ion-col>
+      </span>
+    </ion-row>
+  </ion-grid>
+</ion-content>
